@@ -165,7 +165,7 @@
   /* Gallery */
   .gallery { padding: 20px 0 90px; }
   .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 30px; }
-  .gallery-item { border-radius: 20px; overflow: hidden; }
+  .gallery-item { border-radius: 20px; overflow: hidden; border: none; background: none; padding: 0; margin: 0; display: block; width: 100%; cursor: pointer; }
   .gallery-lg { grid-column: span 2; aspect-ratio: 16/9; }
   .gallery-sm { aspect-ratio: 1/1; }
   @media (min-width: 720px) {
@@ -646,19 +646,29 @@ function renderGrid() {
 
 function renderGallery() {
   const tiles = [
-    { icon: "beef", size: "lg", label: "Burgers", img: FOOD_IMG.zinger },
-    { icon: "utensils", size: "sm", label: "Wraps", img: FOOD_IMG.wrap },
-    { icon: "utensils-crossed", size: "sm", label: "Broast", img: FOOD_IMG.broast },
-    { icon: "drumstick", size: "sm", label: "Tenders", img: FOOD_IMG.tenders },
-    { icon: "sandwich", size: "lg", label: "Sandos", img: FOOD_IMG.sando },
-    { icon: "flame", size: "sm", label: "Fries", img: FOOD_IMG.fries },
+    { icon: "beef", size: "lg", label: "Burgers", img: FOOD_IMG.zinger, cat: "burgers" },
+    { icon: "utensils", size: "sm", label: "Wraps", img: FOOD_IMG.wrap, cat: "wraps" },
+    { icon: "utensils-crossed", size: "sm", label: "Broast", img: FOOD_IMG.broast, cat: "broast" },
+    { icon: "drumstick", size: "sm", label: "Tenders", img: FOOD_IMG.tenders, cat: "tenders" },
+    { icon: "sandwich", size: "lg", label: "Sandos", img: FOOD_IMG.sando, cat: "sandos" },
+    { icon: "flame", size: "sm", label: "Fries", img: FOOD_IMG.fries, cat: "fries" },
   ];
   const grid = document.getElementById("galleryGrid");
   grid.innerHTML = tiles.map((t, i) => `
-    <div class="gallery-item gallery-${t.size}">
+    <button class="gallery-item gallery-${t.size}" data-cat="${t.cat}" aria-label="View ${t.label} in the menu">
       <div class="gallery-zoom">${foodTileHTML({ icon: t.icon, index: i, label: t.label, src: t.img })}</div>
-    </div>
+    </button>
   `).join("");
+
+  grid.querySelectorAll(".gallery-item").forEach(el => {
+    el.addEventListener("click", () => {
+      activeCategory = el.getAttribute("data-cat");
+      renderTabs();
+      renderGrid();
+      if (window.lucide) lucide.createIcons();
+      smoothScrollTo("menu");
+    });
+  });
 }
 
 /* ============================================================
