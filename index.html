@@ -188,8 +188,8 @@
   .location-grid { display: grid; grid-template-columns: 1fr; gap: 36px; }
   .location-address { display: flex; flex-direction: column; gap: 2px; margin-top: 6px; font-size: 17px; font-style: normal; color: #3B322C; }
   .location-contacts { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 20px; }
-  .location-contact-link { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14.5px; color: var(--red); background: #fff; border: 1.5px solid var(--red); padding: 11px 18px; border-radius: 999px; box-shadow: 0 6px 16px rgba(228,35,19,0.12); transition: all .15s ease; }
-  .location-contact-link:hover { background: var(--red); color: #fff; }
+  .location .location-contact-link { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14.5px; color: var(--red); background: #fff; border: 1.5px solid var(--red); padding: 11px 18px; border-radius: 999px; box-shadow: 0 6px 16px rgba(228,35,19,0.12); transition: all .15s ease; }
+  .location .location-contact-link:hover { background: var(--red); color: #fff; }
   .location-cta { margin-top: 26px; }
   .map-tile { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; height: 100%; min-height: 240px; border-radius: 24px; background: repeating-linear-gradient(135deg, #F3ECE4 0 2px, #EDE2D6 2px 26px); color: var(--ink); font-weight: 700; font-size: 14px; border: 1.5px dashed #D9C6B2; }
   @media (min-width: 860px) { .location-grid { grid-template-columns: 1fr 1fr; } }
@@ -205,7 +205,7 @@
   .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; padding: 40px 20px 30px; border-top: 1px solid rgba(255,255,255,0.08); }
   .footer-tagline { margin-top: 6px; font-size: 13px; color: rgba(255,249,242,0.55); letter-spacing: 0.04em; }
   .footer-heading { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(255,249,242,0.45); margin-bottom: 12px; }
-  .footer-line { display: block; font-size: 14.5px; color: rgba(255,249,242,0.8); margin-bottom: 8px; }
+  .footer .footer-line { display: block; font-size: 14.5px; color: #FFFFFF; margin-bottom: 8px; }
   .footer-link { transition: color .15s ease; }
   .footer-link:hover { color: #fff; }
   .footer-btn { text-align: left; padding: 0; }
@@ -685,6 +685,8 @@ function wireLinks() {
   document.getElementById("deliveryCallText").textContent = BRAND.phoneDisplay;
   document.getElementById("locationCallText").textContent = BRAND.phoneDisplay;
   document.getElementById("footerCallLink").textContent = BRAND.phoneDisplay;
+  document.getElementById("footerCallLink").style.color = "#FFFFFF";
+  document.getElementById("footerWaLink").style.color = "#FFFFFF";
   document.getElementById("footerCopy").textContent = `© ${new Date().getFullYear()} WRAAPSTER. All rights reserved.`;
 
   document.getElementById("directionsBtn").href = MAPS_URL;
